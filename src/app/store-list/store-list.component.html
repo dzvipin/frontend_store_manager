@@ -1,0 +1,94 @@
+<section class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 main-div">
+      <div class="col-md-9 offset-md-3 col-sm-12 offset-sm-0">
+        <div class="input-group">
+          <form class="d-flex shop-search-form" (ngSubmit)="searchShops($event)" *ngIf="!isDisabled">
+            <input type="text" name="shopSearch" id="shopSearch" [(ngModel)]="inputValue" [ngModelOptions]="{standalone: true}" class="form-control shop-search-box" placeholder="Search Shops" aria-label="Recipient's username" aria-describedby="button-addon2" #searchValue>
+            <button class="btn btn-outline-secondary btn-sm" type="submit" id="button-addon2" style="height:35px">Search</button>
+          </form>
+          <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-2" style="position: relative" *ngIf="isDisabled">
+            <div class="form-group">
+              <form [formGroup]="createShopForm" style="width:100%">
+                <input (keyup)="getGeoLocationList($event)" formControlName="location" class="form-control" placeholder="search your near by location..." type="text">
+              </form>
+            </div>
+            <div style="width:100%; border:1px solid grey; position:absolute; background: white" *ngIf="isListDisabled">
+              <ul style="list-style-type:none;">
+                <li *ngFor="let location of locationList">
+                  <span (click)="storeLocation(location)">{{location['locationName']}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="resetSearch(searchValue)">Reset</button>
+          <div class="form-check ml-2 mt-1">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" #checked (change)="toggleInput()">
+            <label class="form-check-label" for="flexCheckDefault">
+              Near By
+            </label>
+          </div>
+        </div>
+      </div>
+
+<h1 class="shop-list-heading">SHOP LIST</h1>
+<div class="overflow-auto">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Shop Name</th>
+      <th scope="col">Shop Owner</th>
+      <th scope="col">Location</th>
+      <th scope="col">Category</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="shopListData.length > 0">
+    <tr *ngFor="let shop of shopListData">
+      <td>{{shop.name}}</td>
+      <td>{{shop.ownerName}}</td>
+      <td>{{shop.address.locationName}}</td>
+      <td>{{shop.category}}</td>
+    </tr>
+    </tbody>
+    <tbody *ngIf="shopListData.length === 0">
+    <tr>
+      <td colspan="4"><h3 class="text-center">No Data</h3></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+        <div class="row">
+          <p class="mt-2 col-6">
+            Total Pages {{totalPage === 0 ? 0: pageNumber + 1}} of {{totalPage}}
+          </p>
+          <nav class="col-6" *ngIf="!isDisabled">
+            <ul class="pagination float-right">
+              <li class="page-item" [class]="pageNumber === 0 ? 'disabled' : 'active'">
+                <a class="page-link" href="javascript:;" (click)="prev()"> <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only" style="margin-left: 20px;">Prev</span></a>
+              </li>
+              <li class="page-item" [class]="shopListData.length < 10 ? 'disabled' : 'active'">
+                <a class="page-link" href="javascript:;" (click)="next()"><span class="sr-only">Next</span>
+                  <span aria-hidden="true" style="margin-left: 20px;">&raquo;</span></a>
+              </li>
+            </ul>
+          </nav>
+          <nav class="col-6" *ngIf="isDisabled">
+            <ul class="pagination float-right">
+              <li class="page-item" [class]="pageNumber === 0 ? 'disabled' : 'active'">
+                <a class="page-link" href="javascript:;" (click)="prevForSearchByParams()"> <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only" style="margin-left: 20px">Prev</span></a>
+              </li>
+              <li class="page-item" [class]="shopListData.length < 10 ? 'disabled' : 'active'">
+                <a class="page-link" href="javascript:;" (click)="nextForSearchByParams()"> <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only" style="margin-left: 20px">Next</span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

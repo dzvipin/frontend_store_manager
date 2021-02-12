@@ -1,0 +1,80 @@
+  <div class="modal-dialog" style="margin:0" [hidden]="hideModal">
+    <div class="modal-content create-shop-box">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Your Shop</h5>
+        <button #closebox (click)="closeBox()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createShopForm"  #formDir="ngForm" (ngSubmit)="createShop()">
+          <div class="row">
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 mb-2">
+              <div class="form-group label-floating">
+                <label class="control-label" style="margin: 10px 0 10px 0">Shop Name</label>
+                <input formControlName="shopName" class="form-control" placeholder="" type="text">
+                <div class="error-box" *ngIf="shopName.touched && shopName.errors && shopName.errors.required || (formDir.submitted && shopOwner.invalid)">
+                  Required
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 mb-2">
+
+              <div class="form-group label-floating">
+                <label class="control-label" style="margin: 10px 0 10px 0">Category</label>
+                <select formControlName="category" class="form-control">
+                  <option value="General Store"><i class="fa fa-globe-americas"></i> General Store</option>
+                  <option value="Mall"><i class="fa fa-lock-alt"></i> Mall</option>
+                  <option value="Super Market"><i class="fa fa-lock-alt"></i> Super Market</option>
+                  <option value="Medical Store"><i class="fa fa-lock-alt"></i> Medical Store</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="form-group">
+                <label style="margin: 10px 0 10px 0">Shop Owner</label>
+                <input formControlName="shopOwner" class="form-control" placeholder="Owner Name" type="text">
+                <div class="error-box" *ngIf="shopOwner.touched && shopOwner.errors && shopOwner.errors.required || (formDir.submitted && shopOwner.invalid)">
+                  Required
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+              <div class="form-group">
+                <label style="margin: 10px 0 10px 0">Location</label>
+                <input (keyup)="getGeoLocationList($event)" formControlName="location" class="form-control" placeholder="shop location" type="text">
+                <div class="error-box" *ngIf="location.touched && location.errors && location.errors.required || (formDir.submitted && location.invalid)">
+                  Required
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <ul style="list-style-type:none;">
+                <li *ngFor="let location of locationList">
+                    <span (click)="storeLocation(location)">{{location['locationName']}}</span>
+                </li>
+              </ul>
+            </div>
+              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <button *ngIf="isLoading" type="submit" [disabled]="!createShopForm.valid"  class="btn btn-primary btn-lg full-width">Create</button>
+                <button *ngIf="!isLoading" class="btn btn-primary" type="button" disabled>
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                  Adding...
+                </button>
+              </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- Form Favorite Page Information -->
+
+
+  <!-- ... end Form Favorite Page Information -->
+
+

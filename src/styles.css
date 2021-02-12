@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+.error-box {
+  position: relative;
+  color: #f92552;
+  font-size: 13px; }
+.page-item.active .page-link, .page-item.disabled .page-link {width: max-content;}
+.float-right {float: right;}

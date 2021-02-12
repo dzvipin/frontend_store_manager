@@ -1,0 +1,59 @@
+.shop-list-heading{
+  font-size: 25px;
+  text-align: center;
+  margin:50px 30px 30px 30px;
+}
+
+.table{
+  width:90%;
+  height:auto;
+  position: relative;
+  left: 5%;
+  border:1px solid #ddd;
+}
+.search-box{
+  position:relative;
+  left:25%;
+  top:30px;
+  margin-bottom: 30px;
+}
+.shop-search-box{
+  width:80%;
+  margin-right: 10px;
+  height:35px
+}
+.shop-search-form{
+  width:50%
+}
+.activebutton{
+  color:white;
+  background: blue;
+}
+.disabled{
+  background: grey;
+}
+.disabledbutton{
+  background: grey;
+  color:white
+}
+.ml-2 {margin-left: 0.55rem!important;}
+@media only screen and (max-width: 731px) {
+  body{
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  .main-div{
+    overflow-x:auto;
+  }
+  .shop-search-box{
+    width:100%;
+    margin-right: 0;
+    height:35px
+  }
+  .shop-search-form{
+    display: block;
+    width:80%
+  }
+}
+
+
