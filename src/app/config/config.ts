@@ -5,5 +5,5 @@ export const config = {
   createStore:'http://localhost:8802/v1/api/shop',
   getShops:'http://localhost:8802/v1/api/shop',
   searchShop:'http://localhost:8802/v1/api/shop/search',
-  geoAPIKey: 'AIzaSyBxI5zTMPawNt4Rpihxt61Ub98GnWIOB4E'
+  geoAPIKey: ''
 };
